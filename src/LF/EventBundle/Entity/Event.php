@@ -67,7 +67,7 @@ class Event
     /**
      * @ORM\ManyToMany(targetEntity="LF\EventBundle\Entity\Theme", mappedBy="events")
      * @ORM\JoinColumn(nullable=true)
-     * @ORM\OrderBy({"Name" = "ASC"})
+     * @ORM\OrderBy({"name" = "ASC"})
      */
     private $themes;
 
