@@ -11,7 +11,7 @@ class DefaultController extends Controller
     {
     	$em = $this->getDoctrine()->getManager();
 
-    	$themesHomePage = $em->getRepository('LFEventBundle:Theme')->findBy(array('homePage' => true), array('name' => 'ASC'), 6, 0);
+    	$themesHomePage = $em->getRepository('LFEventBundle:Theme')->findBy(array('homePage' => true), array('name' => 'ASC'), 10, 0);
 
         return $this->render('LFMemoBoxBundle:Default:index.html.twig', array('themesHomePage' => $themesHomePage));
     }
