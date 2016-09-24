@@ -1,0 +1,3 @@
+lf_face_homepage:
+    path:     /
+    defaults: { _controller: LFFaceBundle:Default:index }

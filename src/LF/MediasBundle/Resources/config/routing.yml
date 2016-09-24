@@ -1,0 +1,12 @@
+lf_medias_homepage:
+    path:     /
+    defaults: { _controller: LFMediasBundle:Default:index }
+
+
+lf_medias_photo:
+    path:     /photo/{id}/{size}/{squared}
+    defaults: { _controller: LFMediasBundle:Default:photo, size:0, squared:0 }
+    requirements:
+        id: \d+
+        size: \d+
+        squared: \d+

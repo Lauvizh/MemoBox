@@ -1,0 +1,44 @@
+<?php
+
+namespace LF\EventBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Theme
+ *
+ * @ORM\Table(name="theme")
+ * @ORM\Entity(repositoryClass="LF\EventBundle\Repository\ThemeRepository")
+ */
+class Theme
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="home_page", type="boolean")
+     */
+    private $homePage;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="LF\EventBundle\Entity\Event", inversedBy="themes")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $events;
+
+}

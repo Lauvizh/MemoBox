@@ -1,0 +1,405 @@
+<?php
+
+namespace LF\EventBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Event
+ *
+ * @ORM\Table(name="event")
+ * @ORM\Entity(repositoryClass="LF\EventBundle\Repository\EventRepository")
+ */
+class Event
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="start_date", type="datetime")
+     */
+    private $startDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="end_date", type="datetime")
+     */
+    private $endDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="summary", type="string", length=6400)
+     */
+    private $summary;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_date", type="datetime")
+     */
+    private $createdDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="modified_date", type="datetime")
+     */
+    private $modifiedDate;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="LF\EventBundle\Entity\Theme", mappedBy="events")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $themes;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="LF\UserBundle\Entity\User", mappedBy="viweableEvents")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $allowedUsers;
+
+    /**
+     * @ORM\OneToMany(targetEntity="LF\EventBundle\Entity\Comment", mappedBy="event", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $comments;
+
+    /**
+     * @ORM\OneToMany(targetEntity="LF\MediasBundle\Entity\Media", mappedBy="event")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $medias;
+
+
+    private $mediasFolder;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->themes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->allowedUsers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Event
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set startDate
+     *
+     * @param \DateTime $startDate
+     *
+     * @return Event
+     */
+    public function setStartDate($startDate)
+    {
+        $this->startDate = $startDate;
+
+        return $this;
+    }
+
+    /**
+     * Get startDate
+     *
+     * @return \DateTime
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * Set endDate
+     *
+     * @param \DateTime $endDate
+     *
+     * @return Event
+     */
+    public function setEndDate($endDate)
+    {
+        $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    /**
+     * Get endDate
+     *
+     * @return \DateTime
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
+
+    /**
+     * Set summary
+     *
+     * @param string $summary
+     *
+     * @return Event
+     */
+    public function setSummary($summary)
+    {
+        $this->summary = $summary;
+
+        return $this;
+    }
+
+    /**
+     * Get summary
+     *
+     * @return string
+     */
+    public function getSummary()
+    {
+        return $this->summary;
+    }
+
+    /**
+     * Set createdDate
+     *
+     * @param \DateTime $createdDate
+     *
+     * @return Event
+     */
+    public function setCreatedDate($createdDate)
+    {
+        $this->createdDate = $createdDate;
+
+        return $this;
+    }
+
+    /**
+     * Get createdDate
+     *
+     * @return \DateTime
+     */
+    public function getCreatedDate()
+    {
+        return $this->createdDate;
+    }
+
+    /**
+     * Set modifiedDate
+     *
+     * @param \DateTime $modifiedDate
+     *
+     * @return Event
+     */
+    public function setModifiedDate($modifiedDate)
+    {
+        $this->modifiedDate = $modifiedDate;
+
+        return $this;
+    }
+
+    /**
+     * Get modifiedDate
+     *
+     * @return \DateTime
+     */
+    public function getModifiedDate()
+    {
+        return $this->modifiedDate;
+    }
+
+    /**
+     * Add theme
+     *
+     * @param \LF\EventBundle\Entity\Theme $theme
+     *
+     * @return Event
+     */
+    public function addTheme(\LF\EventBundle\Entity\Theme $theme)
+    {
+        $this->themes[] = $theme;
+
+        return $this;
+    }
+
+    /**
+     * Remove theme
+     *
+     * @param \LF\EventBundle\Entity\Theme $theme
+     */
+    public function removeTheme(\LF\EventBundle\Entity\Theme $theme)
+    {
+        $this->themes->removeElement($theme);
+    }
+
+    /**
+     * Get themes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getThemes()
+    {
+        return $this->themes;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \LF\EventBundle\Entity\Comment $comment
+     *
+     * @return Event
+     */
+    public function addComment(\LF\EventBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \LF\EventBundle\Entity\Comment $comment
+     */
+    public function removeComment(\LF\EventBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Add media
+     *
+     * @param \LF\MediasBundle\Entity\Media $media
+     *
+     * @return Event
+     */
+    public function addMedia(\LF\MediasBundle\Entity\Media $media)
+    {
+        $this->medias[] = $media;
+
+        return $this;
+    }
+
+    /**
+     * Remove media
+     *
+     * @param \LF\MediasBundle\Entity\Media $media
+     */
+    public function removeMedia(\LF\MediasBundle\Entity\Media $media)
+    {
+        $this->medias->removeElement($media);
+    }
+
+    /**
+     * Get medias
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMedias()
+    {
+        return $this->medias;
+    }
+
+    public function setMediasFolder()
+    {
+
+        $mf = "";
+
+        // date
+        if (true) {
+            $mf = $this->getStartDate()->format('Y-m-d').'_';
+            }
+        
+        if (true) {
+            // sluggabled title
+            $separator = "-";
+            $accents_regex = '#&([a-z]{1,2})(?:acute|cedil|circ|grave|lig|orn|ring|slash|th|tilde|uml);#i';
+            $special_cases = array( '-&-' => 'and', '@' => '-at-');
+
+            $slugedTitle = mb_strtolower( trim( $this->getTitle() ), 'UTF-8' );
+            $slugedTitle = str_replace( array_keys($special_cases), array_values( $special_cases), $slugedTitle );
+            $slugedTitle = preg_replace( $accents_regex, '$1', htmlentities( $slugedTitle, ENT_QUOTES, 'UTF-8' ) );
+            $slugedTitle = preg_replace("/[^a-z0-9]/u", "$separator", $slugedTitle);
+            $slugedTitle = preg_replace("/[$separator]+/u", "$separator", $slugedTitle);
+
+            $mf .= $slugedTitle.'_';
+            }
+
+
+        if (true) {
+            // 6 digits id
+            $mf .= sprintf("%06d",$this->getId());
+            }
+
+        // return as format : yyyy-mm-dd_sluggabled-title_00000x
+        $this->mediasFolder = $mf;
+
+        return $this;
+    }
+
+    public function getMediasFolder()
+    {
+        if (!$this->mediasFolder) {
+            $this->setMediasFolder();
+        }
+        return $this->mediasFolder;
+    }
+}

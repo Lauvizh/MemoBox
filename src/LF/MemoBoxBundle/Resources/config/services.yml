@@ -1,0 +1,4 @@
+services:
+   # lf_memo_box.allThemes:
+   #     class: LF\MemoBoxBundle\allThemes
+   #     arguments: ["@doctrine.orm.entity_manager"]

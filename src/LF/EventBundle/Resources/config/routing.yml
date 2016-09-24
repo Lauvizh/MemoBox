@@ -1,0 +1,21 @@
+lf_event_homepage:
+    path:     /{id}
+    defaults: { _controller: LFEventBundle:Default:index }
+    requirements:
+        id: \d+
+
+lf_event_theme:
+    path:     /theme/{id}
+    defaults: { _controller: LFEventBundle:Default:theme }
+    requirements:
+        id: \d+
+
+lf_event_archive:
+    path:     /archive
+    defaults: { _controller: LFEventBundle:Default:archive }
+
+# lf_event_theme:
+#     path:     /theme_menu
+#     defaults: { _controller: LFEventBundle:Themes:getAllThemesMenu }
+#     requirements:
+#         id: \d+

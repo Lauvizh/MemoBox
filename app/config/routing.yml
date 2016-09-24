@@ -1,0 +1,26 @@
+lf_user:
+    resource: "@LFUserBundle/Resources/config/routing.yml"
+    prefix:   /user
+
+lf_memo_box:
+    resource: "@LFMemoBoxBundle/Resources/config/routing.yml"
+    prefix:   /
+
+lf_face:
+    resource: "@LFFaceBundle/Resources/config/routing.yml"
+    prefix:   /face
+
+lf_event:
+    resource: "@LFEventBundle/Resources/config/routing.yml"
+    prefix:   /event
+
+lf_medias:
+    resource: "@LFMediasBundle/Resources/config/routing.yml"
+    prefix:   /media
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

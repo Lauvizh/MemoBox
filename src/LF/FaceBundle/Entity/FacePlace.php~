@@ -1,0 +1,58 @@
+<?php
+
+namespace LF\FaceBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * FacePlace
+ *
+ * @ORM\Table(name="face_place")
+ * @ORM\Entity(repositoryClass="LF\FaceBundle\Repository\FacePlaceRepository")
+ */
+class FacePlace
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="coord_x", type="string", length=128)
+     */
+    private $coordX;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="coord_y", type="string", length=128)
+     */
+    private $coordY;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="dimension", type="integer")
+     */
+    private $dimension;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="LF\FaceBundle\Entity\Face", inversedBy="facePlaces", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $face;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="LF\MediasBundle\Entity\Media", inversedBy="facePlaces", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $media;
+
+
+}

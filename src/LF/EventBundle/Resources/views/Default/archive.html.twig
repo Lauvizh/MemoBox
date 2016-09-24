@@ -1,0 +1,16 @@
+{% extends "LFMemoBoxBundle::layout.html.twig" %}
+
+{% block content%}
+<div class="row">
+	<div class="col-xs-12">
+		<p>block content archive</p>
+		{% if allEvents %}
+			<ul>
+				{% for event in allEvents %}
+					<li>{{ event.mediasFolder }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}
