@@ -67,6 +67,7 @@ class Event
     /**
      * @ORM\ManyToMany(targetEntity="LF\EventBundle\Entity\Theme", mappedBy="events")
      * @ORM\JoinColumn(nullable=true)
+     * @ORM\OrderBy({"Name" = "ASC"})
      */
     private $themes;
 
@@ -85,6 +86,7 @@ class Event
     /**
      * @ORM\OneToMany(targetEntity="LF\MediasBundle\Entity\Media", mappedBy="event")
      * @ORM\JoinColumn(nullable=true)
+     * @ORM\OrderBy({"startDate" = "DESC"})
      */
     private $medias;
 

@@ -3,7 +3,6 @@
 namespace LF\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Criteria;
 
 /**
  * Theme
@@ -39,6 +38,7 @@ class Theme
     /**
      * @ORM\ManyToMany(targetEntity="LF\EventBundle\Entity\Event", inversedBy="themes")
      * @ORM\JoinColumn(nullable=true)
+     * @ORM\OrderBy({"startDate" = "DESC"})
      */
     private $events;
 
@@ -139,8 +139,6 @@ class Theme
      */
     public function getEvents()
     {
-        $criteria = Criteria::create()
-        ->orderBy(array('id'=> Criteria::DESC));
-        return $this->events->matching($criteria);
+        return $this->events;
     }
 }

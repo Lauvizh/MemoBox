@@ -3,6 +3,7 @@
 namespace LF\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Criteria;
 
 /**
  * Event
@@ -155,9 +156,9 @@ class Event
      *
      * @return \DateTime
      */
-    public function getStartDate()
+    public function getStartDate($format = "Y-m-d")
     {
-        return $this->startDate;
+        return $this->startDate->format($format);
     }
 
     /**
@@ -179,9 +180,9 @@ class Event
      *
      * @return \DateTime
      */
-    public function getEndDate()
+    public function getEndDate($format = "Y-m-d")
     {
-        return $this->endDate;
+        return $this->endDate->format($format);
     }
 
     /**
@@ -358,6 +359,38 @@ class Event
         return $this->medias;
     }
 
+    public function getFirstsPhotos($nb = 4)
+    {
+
+        $criteria = Criteria::create()
+        ->where(Criteria::expr()->eq("type", "pho"))
+        ->orderBy(array('pdvDate'=> Criteria::ASC))
+        ->setMaxResults($nb);
+
+        return $this->medias->matching($criteria);
+    }
+
+    public function getPhotos()
+    {
+
+        $criteria = Criteria::create()
+        ->where(Criteria::expr()->eq("type", "pho"))
+        ->orderBy(array('pdvDate'=> Criteria::ASC));
+
+        return $this->medias->matching($criteria);
+    }
+
+    public function getVideos()
+    {
+
+        $criteria = Criteria::create()
+        ->where(Criteria::expr()->eq("type", "vid"))
+        ->orderBy(array('startDate'=> Criteria::ASC));
+
+        return $this->medias->matching($criteria);
+    }
+
+
     public function setMediasFolder()
     {
 
@@ -401,5 +434,39 @@ class Event
             $this->setMediasFolder();
         }
         return $this->mediasFolder;
+    }
+
+    /**
+     * Add allowedUser
+     *
+     * @param \LF\UserBundle\Entity\User $allowedUser
+     *
+     * @return Event
+     */
+    public function addAllowedUser(\LF\UserBundle\Entity\User $allowedUser)
+    {
+        $this->allowedUsers[] = $allowedUser;
+
+        return $this;
+    }
+
+    /**
+     * Remove allowedUser
+     *
+     * @param \LF\UserBundle\Entity\User $allowedUser
+     */
+    public function removeAllowedUser(\LF\UserBundle\Entity\User $allowedUser)
+    {
+        $this->allowedUsers->removeElement($allowedUser);
+    }
+
+    /**
+     * Get allowedUsers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAllowedUsers()
+    {
+        return $this->allowedUsers;
     }
 }

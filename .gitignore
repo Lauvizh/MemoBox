@@ -15,5 +15,6 @@
 /vendor/
 /web/bundles/
 /*.sql
+/*.sql*
 /medias/*
 /#sublimesfiles
