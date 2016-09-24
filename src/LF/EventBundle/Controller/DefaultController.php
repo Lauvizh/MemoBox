@@ -35,9 +35,6 @@ class DefaultController extends Controller
 
         $allEvents = $em->getRepository('LFEventBundle:Event')->findAll();
 
-        dump($allEvents);
-        die();
-
         return $this->render('LFEventBundle:Default:archive.html.twig', array('allEvents'=>$allEvents));
     }
 }

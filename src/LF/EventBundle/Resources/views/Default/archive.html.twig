@@ -4,13 +4,7 @@
 <div class="row">
 	<div class="col-xs-12">
 		<p>block content archive</p>
-		{% if allEvents %}
-			<ul>
-				{% for event in allEvents %}
-					<li>{{ event.mediasFolder }}</li>
-				{% endfor %}
-			</ul>
-		{% endif %}
+		{{ render(controller('LFEventBundle:Event:EventListItem', {'events': allEvents })) }}
 	</div>
 </div>
 {% endblock %}
