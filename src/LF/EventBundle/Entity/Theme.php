@@ -3,6 +3,8 @@
 namespace LF\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Criteria as Criteria;
+use Doctrine\common\Collections\ArrayCollection;
 
 /**
  * Theme
@@ -37,7 +39,10 @@ class Theme
 
     /**
      * @ORM\ManyToMany(targetEntity="LF\EventBundle\Entity\Event", inversedBy="themes")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinTable(name="theme_event",
+     *     joinColumns={@ORM\JoinColumn(name="theme_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="event_id", referencedColumnName="id")}
+     * )
      * @ORM\OrderBy({"startDate" = "DESC"})
      */
     private $events;
@@ -141,4 +146,5 @@ class Theme
     {
         return $this->events;
     }
+
 }

@@ -13,6 +13,9 @@ class HomePageController extends Controller
 
     	$themesHomePage = $em->getRepository('LFEventBundle:Theme')->findBy(array('homePage' => true), array('name' => 'ASC'), 10, 0);
 
+    	// dump($themesHomePage);
+    	// die();
+
         return $this->render('LFMemoBoxBundle:HomePage:homepage.html.twig', array('themesHomePage' => $themesHomePage));
     }
 }

@@ -12,9 +12,12 @@ class DefaultController extends Controller
 
         $event = $em->getRepository('LFEventBundle:Event')->find($id);
 
-        //$medias = $event->getMedias();
+        // $themes = $event->getThemes();
 
-        //dump($medias);
+        // foreach ($themes as $theme) {
+        //     dump($theme);
+        // }
+        // die();
 
         return $this->render('LFEventBundle:Default:index.html.twig' , array('event'=>$event));
     }

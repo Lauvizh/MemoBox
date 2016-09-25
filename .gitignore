@@ -16,6 +16,7 @@
 /web/bundles/
 /*.sql
 /*.sql*
+*.sql.zip
 /medias/*
 /#sublimesfiles
 *.php~

@@ -22,6 +22,17 @@
 		</div>
 	</div>
 {% endif %}
+{% if event.getThemes() %}
+	<div class="row">
+		<div class="col-xs-12">
+			<ul class="list-unstyled">
+				{% for theme in event.getThemes() %}
+					<li>{{ theme.name }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endif %}
 <div class="row">
 	<div class="col-xs-12">
 		{% if event.getFirstsPhotos(6) %}
