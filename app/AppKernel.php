@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new LF\MediasBundle\LFMediasBundle(),
             new LF\EventBundle\LFEventBundle(),
             new LF\FaceBundle\LFFaceBundle(),
