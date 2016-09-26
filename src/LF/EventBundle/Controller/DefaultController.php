@@ -3,6 +3,8 @@
 namespace LF\EventBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Knp\Bundle\PaginatorBundle\Definition\PaginatorAwareInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -31,13 +33,20 @@ class DefaultController extends Controller
         return $this->render('LFEventBundle:Default:theme.html.twig',array('theme'=>$theme));
     }
 
-    public function archiveAction()
+    public function archiveAction(Request $request)
     {
 
     	$em = $this->getDoctrine()->getManager();
 
-        $allEvents = $em->getRepository('LFEventBundle:Event')->findAll();
+        $query = $em->getRepository('LFEventBundle:Event')->findAll();
 
-        return $this->render('LFEventBundle:Default:archive.html.twig', array('allEvents'=>$allEvents));
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
+        return $this->render('LFEventBundle:Default:archive.html.twig', array('pagination'=>$pagination));
     }
 }
