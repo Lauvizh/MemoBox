@@ -14,13 +14,6 @@ class DefaultController extends Controller
 
         $event = $em->getRepository('LFEventBundle:Event')->find($id);
 
-        // $themes = $event->getThemes();
-
-        // foreach ($themes as $theme) {
-        //     dump($theme);
-        // }
-        // die();
-
         return $this->render('LFEventBundle:Default:index.html.twig' , array('event'=>$event));
     }
 
@@ -29,6 +22,8 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $theme = $em->getRepository('LFEventBundle:Theme')->find($id);
+
+
 
         return $this->render('LFEventBundle:Default:theme.html.twig',array('theme'=>$theme));
     }

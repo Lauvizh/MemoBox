@@ -89,6 +89,20 @@ class Event
      */
     private $medias;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="count_photos", type="integer")
+     */
+    private $countPhotos;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="count_videos", type="integer")
+     */
+    private $countVideos;
+
 
     private $mediasFolder;
 
@@ -289,6 +303,7 @@ class Event
      */
     public function getThemes()
     {
+
         return $this->themes;
     }
 

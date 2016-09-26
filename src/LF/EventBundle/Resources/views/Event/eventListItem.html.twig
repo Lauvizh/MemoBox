@@ -5,6 +5,16 @@
 				<h2>{{ event.title }}</h2>
 				<p class="strong">du : {{ event.getStartDate("d-m-Y") }} au : {{ event.getEndDate("d-m-Y") }}</p>
 				<p>{{ event.summary|length > 180 ? event.summary|slice(0, 180) ~ '...' : event.summary  }}</p>
+				{% if event.getCountPhotos() or event.getCountVideos() %}
+					<p>
+						<span>
+							{{ event.getCountPhotos() }} : photos
+						</span>
+						<span>
+							{{ event.getCountVideos() }} : videos
+						</span>
+					</p>
+				{% endif %}
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 			{% for media in event.getFirstsPhotos(6) %}

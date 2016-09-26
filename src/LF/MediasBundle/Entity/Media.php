@@ -303,6 +303,10 @@ class Media
      */
     public function setName($name)
     {
+
+        // photos : 10 digits id + extention
+        // videos : 10 digits id + extention (of the first format uploaded the other formats will have the same name with there own extention)
+
         $this->name = $name;
 
         return $this;

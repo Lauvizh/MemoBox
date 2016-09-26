@@ -89,6 +89,20 @@ class Event
      */
     private $medias;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="count_photos", type="integer")
+     */
+    private $countPhotos;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="count_videos", type="integer")
+     */
+    private $countVideos;
+
 
     private $mediasFolder;
 
@@ -470,5 +484,53 @@ class Event
     public function getAllowedUsers()
     {
         return $this->allowedUsers;
+    }
+
+    /**
+     * Set countPhotos
+     *
+     * @param integer $countPhotos
+     *
+     * @return Event
+     */
+    public function setCountPhotos($countPhotos)
+    {
+        $this->countPhotos = $countPhotos;
+
+        return $this;
+    }
+
+    /**
+     * Get countPhotos
+     *
+     * @return integer
+     */
+    public function getCountPhotos()
+    {
+        return $this->countPhotos;
+    }
+
+    /**
+     * Set countVideos
+     *
+     * @param integer $countVideos
+     *
+     * @return Event
+     */
+    public function setCountVideos($countVideos)
+    {
+        $this->countVideos = $countVideos;
+
+        return $this;
+    }
+
+    /**
+     * Get countVideos
+     *
+     * @return integer
+     */
+    public function getCountVideos()
+    {
+        return $this->countVideos;
     }
 }
