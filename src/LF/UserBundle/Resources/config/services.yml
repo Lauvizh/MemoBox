@@ -1,4 +1,5 @@
 services:
-#    lf_user.example:
-#        class: LF\UserBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+   # lf_user.form.registration:
+   #     class: LF\UserBundle\Form\RegistrationType
+   #     tags:
+   #        - {name: form_type, alias: lf_user_registration}

@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new LF\FaceBundle\LFFaceBundle(),
             new LF\MemoBoxBundle\LFMemoBoxBundle(),
             new LF\UserBundle\LFUserBundle(),
+            new LF\AdminBundle\LFAdminBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

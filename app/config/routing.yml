@@ -1,3 +1,7 @@
+lf_admin:
+    resource: "@LFAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
 lf_user:
     resource: "@LFUserBundle/Resources/config/routing.yml"
     prefix:   /user
