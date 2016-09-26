@@ -128,3 +128,10 @@ knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+# SonataAdminBundle Configuration
+sonata_block:
+    default_context: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            context: [admin]
