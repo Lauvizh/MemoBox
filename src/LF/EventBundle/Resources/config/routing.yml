@@ -11,8 +11,10 @@ lf_event_theme:
         id: \d+
 
 lf_event_archive:
-    path:     /archive
-    defaults: { _controller: LFEventBundle:Default:archive }
+    path:     /archive/{page}
+    defaults: { _controller: LFEventBundle:Default:archive , page: 1 }
+    requirements:
+        page: \d+
 
 # lf_event_theme:
 #     path:     /theme_menu
